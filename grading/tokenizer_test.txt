@@ -24,7 +24,7 @@
 [INFO]  T E S T S
 [INFO] -------------------------------------------------------
 [INFO] Running edu.montana.csci.csci468.tokenizer.CatScriptTokenizerTest
-[INFO] Tests run: 16, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.07 s - in edu.montana.csci.csci468.tokenizer.CatScriptTokenizerTest
+[INFO] Tests run: 16, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.169 s - in edu.montana.csci.csci468.tokenizer.CatScriptTokenizerTest
 [INFO] 
 [INFO] Results:
 [INFO] 
@@ -33,6 +33,6 @@
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  2.786 s
-[INFO] Finished at: 2022-02-18T17:20:24-07:00
+[INFO] Total time:  6.928 s
+[INFO] Finished at: 2022-02-18T20:32:18-07:00
 [INFO] ------------------------------------------------------------------------
