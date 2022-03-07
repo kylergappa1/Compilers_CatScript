@@ -10,6 +10,8 @@ import edu.montana.csci.csci468.tokenizer.Token;
 import edu.montana.csci.csci468.tokenizer.TokenType;
 import org.objectweb.asm.Opcodes;
 
+import static edu.montana.csci.csci468.util.Util.verifyOneOfTypes;
+
 public class AdditiveExpression extends Expression {
 
     private final Token operator;
@@ -44,7 +46,14 @@ public class AdditiveExpression extends Expression {
                 rightHandSide.addError(ErrorType.INCOMPATIBLE_TYPES);
             }
         }
-        // TODO handle strings
+        if (getType().equals(CatscriptType.STRING)) {
+            if (!verifyOneOfTypes(leftHandSide, CatscriptType.STRING, CatscriptType.INT, CatscriptType.NULL)) {
+                leftHandSide.addError(ErrorType.INCOMPATIBLE_TYPES);
+            }
+            if (!verifyOneOfTypes(rightHandSide, CatscriptType.STRING, CatscriptType.INT, CatscriptType.NULL)) {
+                rightHandSide.addError(ErrorType.INCOMPATIBLE_TYPES);
+            }
+        }
     }
 
     @Override
@@ -69,7 +78,11 @@ public class AdditiveExpression extends Expression {
     public Object evaluate(CatscriptRuntime runtime) {
         Integer lhsValue = (Integer) leftHandSide.evaluate(runtime);
         Integer rhsValue = (Integer) rightHandSide.evaluate(runtime);
-        //TODO handle string case
+        if (getType().equals(CatscriptType.STRING)) {
+            String leftString = String.valueOf(leftHandSide.evaluate(runtime));
+            String rightString = String.valueOf(rightHandSide.evaluate(runtime));
+            return leftString + rightString;
+        }
         if (isAdd()) {
             return lhsValue + rhsValue;
         } else {

@@ -21,6 +21,8 @@ public enum TokenType {
     ELSE, FALSE, FUNCTION, FOR, IF, IN, NOT, NULL,
     PRINT, RETURN, TRUE, VAR,
 
+    AND, OR, QUESTION,
+
     ERROR,
     EOF;
 
@@ -38,6 +40,8 @@ public enum TokenType {
         KEYWORDS.put("return", RETURN);
         KEYWORDS.put("true", TRUE);
         KEYWORDS.put("var", VAR);
+        KEYWORDS.put("and", AND);
+        KEYWORDS.put("or", OR);
     }
 
 

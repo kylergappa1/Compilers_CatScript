@@ -33,6 +33,14 @@ public class FactorExpression extends Expression {
         return operator.getType() == TokenType.STAR;
     }
 
+    public boolean isBool() {
+        return operator.getType() == TokenType.AND || operator.getType() == TokenType.OR;
+    }
+
+    public boolean isAnd() {
+        return operator.getType() == TokenType.AND;
+    }
+
     @Override
     public String toString() {
         return super.toString() + "[" + operator.getStringValue() + "]";
@@ -42,16 +50,25 @@ public class FactorExpression extends Expression {
     public void validate(SymbolTable symbolTable) {
         leftHandSide.validate(symbolTable);
         rightHandSide.validate(symbolTable);
-        if (!leftHandSide.getType().equals(CatscriptType.INT)) {
-            leftHandSide.addError(ErrorType.INCOMPATIBLE_TYPES);
-        }
-        if (!rightHandSide.getType().equals(CatscriptType.INT)) {
-            rightHandSide.addError(ErrorType.INCOMPATIBLE_TYPES);
+        if (isBool()) {
+            if (!leftHandSide.getType().equals(CatscriptType.BOOLEAN) && !rightHandSide.getType().equals(CatscriptType.BOOLEAN)) {
+                addError(ErrorType.INCOMPATIBLE_TYPES);
+            }
+        } else {
+            if (!leftHandSide.getType().equals(CatscriptType.INT)) {
+                leftHandSide.addError(ErrorType.INCOMPATIBLE_TYPES);
+            }
+            if (!rightHandSide.getType().equals(CatscriptType.INT)) {
+                rightHandSide.addError(ErrorType.INCOMPATIBLE_TYPES);
+            }
         }
     }
 
     @Override
     public CatscriptType getType() {
+        if (isBool()) {
+            return CatscriptType.BOOLEAN;
+        }
         return CatscriptType.INT;
     }
 

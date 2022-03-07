@@ -41,7 +41,7 @@ public class UnaryExpression extends Expression {
         rightHandSide.validate(symbolTable);
         if (isNot() && !rightHandSide.getType().equals(CatscriptType.BOOLEAN)) {
             addError(ErrorType.INCOMPATIBLE_TYPES);
-        } else if(isMinus() && !rightHandSide.getType().equals(CatscriptType.INT)) {
+        } else if (isMinus() && !rightHandSide.getType().equals(CatscriptType.INT)) {
             addError(ErrorType.INCOMPATIBLE_TYPES);
         }
     }
@@ -65,7 +65,7 @@ public class UnaryExpression extends Expression {
         if (this.isMinus()) {
             return -1 * (Integer) rhsValue;
         } else {
-            return null; // TODO handle boolean NOT
+            return !(Boolean) rhsValue;
         }
     }
 

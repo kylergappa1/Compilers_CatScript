@@ -3,9 +3,12 @@ package edu.montana.csci.csci468.parser.expressions;
 import edu.montana.csci.csci468.bytecode.ByteCodeGenerator;
 import edu.montana.csci.csci468.eval.CatscriptRuntime;
 import edu.montana.csci.csci468.parser.CatscriptType;
+import edu.montana.csci.csci468.parser.ErrorType;
 import edu.montana.csci.csci468.parser.SymbolTable;
 import edu.montana.csci.csci468.tokenizer.Token;
 import edu.montana.csci.csci468.tokenizer.TokenType;
+
+import static edu.montana.csci.csci468.tokenizer.TokenType.*;
 
 public class EqualityExpression extends Expression {
 
@@ -36,10 +39,33 @@ public class EqualityExpression extends Expression {
         return operator.getType().equals(TokenType.EQUAL_EQUAL);
     }
 
+    public boolean isLessThan() {
+        return operator.getType().equals(LESS);
+    }
+
+    public boolean isLessThanOrEqual() {
+        return operator.getType().equals(LESS_EQUAL);
+    }
+
+    public boolean isGreaterThanOrEqual() {
+        return operator.getType().equals(GREATER_EQUAL);
+    }
+
+    public boolean isGreater() {
+        return operator.getType().equals(GREATER);
+    }
+
+
     @Override
     public void validate(SymbolTable symbolTable) {
         leftHandSide.validate(symbolTable);
         rightHandSide.validate(symbolTable);
+        if (!leftHandSide.getType().equals(CatscriptType.INT)) {
+            leftHandSide.addError(ErrorType.INCOMPATIBLE_TYPES);
+        }
+        if (!rightHandSide.getType().equals(CatscriptType.INT)) {
+            rightHandSide.addError(ErrorType.INCOMPATIBLE_TYPES);
+        }
     }
 
     @Override
@@ -53,6 +79,20 @@ public class EqualityExpression extends Expression {
 
     @Override
     public Object evaluate(CatscriptRuntime runtime) {
+        Integer lhs = (Integer) leftHandSide.evaluate(runtime);
+        Integer rhs = (Integer) rightHandSide.evaluate(runtime);
+        if (operator.getStringValue().equals(">")) {
+            return lhs > rhs;
+        }
+        if (operator.getStringValue().equals("<")) {
+            return lhs < rhs;
+        }
+        if (operator.getStringValue().equals(">=")) {
+            return lhs >= rhs;
+        }
+        if (operator.getStringValue().equals("<=")) {
+            return lhs <= rhs;
+        }
         return super.evaluate(runtime);
     }
 
