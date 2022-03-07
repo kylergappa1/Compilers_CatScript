@@ -85,7 +85,7 @@ public class CatScriptParser {
     //============================================================
 
     private Expression parseExpression() {
-        return parseAdditiveExpression();
+        return parseEqualityExpression();
     }
 
     private Expression parseAdditiveExpression() {
@@ -117,38 +117,6 @@ public class CatScriptParser {
 
     }
 
-    private FunctionCallExpression parseFunctionExpression(Token start) {
-        List<Expression> argumentList = new ArrayList<>();
-        boolean terminated = true;
-        tokens.consumeToken();
-        if (!tokens.matchAndConsume(RIGHT_PAREN)) {
-            argumentList.add(parseExpression());
-            while (tokens.matchAndConsume(COMMA)) {
-                argumentList.add(parseExpression());
-            }
-            terminated = false;
-        }
-        FunctionCallExpression functionCallExpression = new FunctionCallExpression(start.getStringValue(), argumentList);
-        functionCallExpression.setToken(start);
-        if (!terminated) {
-            require(RIGHT_PAREN, functionCallExpression, ErrorType.UNTERMINATED_ARG_LIST);
-        }
-        return functionCallExpression;
-    }
-
-    private Expression parseUnaryExpression() {
-        if (tokens.match(MINUS, NOT)) {
-            Token token = tokens.consumeToken();
-            Expression rhs = parseUnaryExpression();
-            UnaryExpression unaryExpression = new UnaryExpression(token, rhs);
-            unaryExpression.setStart(token);
-            unaryExpression.setEnd(rhs.getEnd());
-            return unaryExpression;
-        } else {
-            return parsePrimaryExpression();
-        }
-    }
-
     private Expression parseEqualityExpression() {
         Expression lhs = parseComparisonExpression();
         if (tokens.match(EQUAL_EQUAL, BANG_EQUAL)) {
@@ -173,6 +141,39 @@ public class CatScriptParser {
         }
     }
 
+    private Expression parseUnaryExpression() {
+        if (tokens.match(MINUS, NOT)) {
+            Token token = tokens.consumeToken();
+            Expression rhs = parseUnaryExpression();
+            UnaryExpression unaryExpression = new UnaryExpression(token, rhs);
+            unaryExpression.setStart(token);
+            unaryExpression.setEnd(rhs.getEnd());
+            return unaryExpression;
+        } else {
+            return parsePrimaryExpression();
+        }
+    }
+
+    private FunctionCallExpression parseFunctionExpression(Token start) {
+        List<Expression> argumentList = new ArrayList<>();
+        boolean terminated = true;
+        tokens.consumeToken();
+        if (!tokens.matchAndConsume(RIGHT_PAREN)) {
+            argumentList.add(parseExpression());
+            while (tokens.matchAndConsume(COMMA)) {
+                argumentList.add(parseExpression());
+            }
+            terminated = false;
+        }
+        FunctionCallExpression functionCallExpression = new FunctionCallExpression(start.getStringValue(), argumentList);
+        functionCallExpression.setToken(start);
+        if (!terminated) {
+            require(RIGHT_PAREN, functionCallExpression, ErrorType.UNTERMINATED_ARG_LIST);
+        }
+        return functionCallExpression;
+    }
+
+    // With enough if statements i can do anything
     private Expression parsePrimaryExpression() {
         Token token;
         if (tokens.match(INTEGER)) {
