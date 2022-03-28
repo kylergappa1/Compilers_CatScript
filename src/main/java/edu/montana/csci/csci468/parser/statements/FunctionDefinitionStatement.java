@@ -98,8 +98,18 @@ public class FunctionDefinitionStatement extends Statement {
     }
 
     private boolean validateReturnCoverage(List<Statement> statements) {
-        // TODO - implement return coverage checking
-        return true;
+        if (!statements.isEmpty() && statements.get(statements.size() - 1) instanceof ReturnStatement) {
+            return true;
+        }
+        for (Statement statement : statements) {
+            if (statement instanceof IfStatement) {
+                IfStatement ifStatement = (IfStatement) statement;
+                return validateReturnCoverage(ifStatement.getTrueStatements()) &&
+                        !ifStatement.getElseStatements().isEmpty() &&
+                        validateReturnCoverage(ifStatement.getElseStatements());
+            }
+        }
+        return false;
     }
 
     public Object invoke(CatscriptRuntime runtime, List<Object> args) {

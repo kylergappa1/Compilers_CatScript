@@ -8,9 +8,12 @@ import edu.montana.csci.csci468.parser.ParseError;
 import edu.montana.csci.csci468.parser.SymbolTable;
 import edu.montana.csci.csci468.parser.expressions.Expression;
 
+import java.util.ArrayList;
+
 public class AssignmentStatement extends Statement {
     private Expression expression;
     private String variableName;
+    private ArrayList<Expression> arrayIndex;
 
     public Expression getExpression() {
         return expression;
@@ -35,7 +38,9 @@ public class AssignmentStatement extends Statement {
         if (symbolType == null) {
             addError(ErrorType.UNKNOWN_NAME);
         } else {
-            // TOOD - verify compatilibity of types
+            if (symbolTable.getSymbolType(variableName) != expression.getType() && arrayIndex == null) {
+                addError(ErrorType.INCOMPATIBLE_TYPES);
+            }
         }
     }
 
@@ -55,5 +60,9 @@ public class AssignmentStatement extends Statement {
     @Override
     public void compile(ByteCodeGenerator code) {
         super.compile(code);
+    }
+
+    public void setArrayIndex(ArrayList<Expression> arrayIndex) {
+        this.arrayIndex = arrayIndex;
     }
 }
