@@ -156,7 +156,6 @@ public class FunctionDefinitionStatement extends Statement {
     //==============================================================
     @Override
     public void execute(CatscriptRuntime runtime) {
-        super.execute(runtime);
     }
 
     @Override

@@ -60,12 +60,12 @@ public class EqualityExpression extends Expression {
     public void validate(SymbolTable symbolTable) {
         leftHandSide.validate(symbolTable);
         rightHandSide.validate(symbolTable);
-        if (!leftHandSide.getType().equals(CatscriptType.INT)) {
-            leftHandSide.addError(ErrorType.INCOMPATIBLE_TYPES);
-        }
-        if (!rightHandSide.getType().equals(CatscriptType.INT)) {
-            rightHandSide.addError(ErrorType.INCOMPATIBLE_TYPES);
-        }
+//        if (!leftHandSide.getType().equals(CatscriptType.INT)) {
+//            leftHandSide.addError(ErrorType.INCOMPATIBLE_TYPES);
+//        }
+//        if (!rightHandSide.getType().equals(CatscriptType.INT)) {
+//            rightHandSide.addError(ErrorType.INCOMPATIBLE_TYPES);
+//        }
     }
 
     @Override
@@ -79,21 +79,23 @@ public class EqualityExpression extends Expression {
 
     @Override
     public Object evaluate(CatscriptRuntime runtime) {
-        Integer lhs = (Integer) leftHandSide.evaluate(runtime);
-        Integer rhs = (Integer) rightHandSide.evaluate(runtime);
-        if (operator.getStringValue().equals(">")) {
-            return lhs > rhs;
-        }
-        if (operator.getStringValue().equals("<")) {
-            return lhs < rhs;
-        }
-        if (operator.getStringValue().equals(">=")) {
-            return lhs >= rhs;
-        }
-        if (operator.getStringValue().equals("<=")) {
-            return lhs <= rhs;
-        }
-        return super.evaluate(runtime);
+//        Integer lhs = (Integer) leftHandSide.evaluate(runtime);
+//        Integer rhs = (Integer) rightHandSide.evaluate(runtime);
+//        if (operator.getStringValue().equals(">")) {
+//            return lhs > rhs;
+//        }
+//        if (operator.getStringValue().equals("<")) {
+//            return lhs < rhs;
+//        }
+//        if (operator.getStringValue().equals(">=")) {
+//            return lhs >= rhs;
+//        }
+//        if (operator.getStringValue().equals("<=")) {
+//            return lhs <= rhs;
+//        } else {
+//            return isEqual() == (getRightHandSide().evaluate(runtime) == getLeftHandSide().evaluate(runtime));
+//        }
+        return isEqual() == (getRightHandSide().evaluate(runtime) == getLeftHandSide().evaluate(runtime));
     }
 
     @Override
