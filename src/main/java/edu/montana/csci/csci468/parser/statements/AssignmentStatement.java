@@ -49,7 +49,15 @@ public class AssignmentStatement extends Statement {
     //==============================================================
     @Override
     public void execute(CatscriptRuntime runtime) {
-        super.execute(runtime);
+        if (arrayIndex == null) {
+            runtime.setValue(variableName, expression.evaluate(runtime));
+        } else {
+            ArrayList<Object> array = (ArrayList<Object>) runtime.getValue(variableName);
+            for (int i = 0; i < arrayIndex.size() - 1; i++) {
+                array = (ArrayList<Object>) array.get((Integer) arrayIndex.get(i).evaluate(runtime));
+            }
+            array.set((Integer) arrayIndex.get(arrayIndex.size() - 1).evaluate(runtime), expression.evaluate(runtime));
+        }
     }
 
     @Override

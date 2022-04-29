@@ -7,6 +7,7 @@ import edu.montana.csci.csci468.parser.ErrorType;
 import edu.montana.csci.csci468.parser.ParseError;
 import edu.montana.csci.csci468.parser.SymbolTable;
 import edu.montana.csci.csci468.parser.expressions.Expression;
+import org.objectweb.asm.Opcodes;
 
 public class VariableStatement extends Statement {
     private Expression expression;
@@ -75,6 +76,33 @@ public class VariableStatement extends Statement {
 
     @Override
     public void compile(ByteCodeGenerator code) {
-        super.compile(code);
+        if (isGlobal()) {
+            code.addVarInstruction(Opcodes.ALOAD, 0);
+            expression.compile(code);
+            if (getType() == CatscriptType.INT) {
+                code.addField(getVariableName(), "I");
+                code.addFieldInstruction(Opcodes.PUTFIELD, getVariableName(), "I", code.getProgramInternalName());
+            } else if (getType() == CatscriptType.BOOLEAN) {
+                code.addField(getVariableName(), "Z");
+                code.addFieldInstruction(Opcodes.PUTFIELD, getVariableName(), "Z", code.getProgramInternalName());
+            } else if (getType() == CatscriptType.NULL) {
+                code.addField(getVariableName(), "Ljava/lang/Object;");
+                code.addFieldInstruction(Opcodes.PUTFIELD, getVariableName(), "Ljava/lang/Object;", code.getProgramInternalName());
+            } else if (getType() == CatscriptType.STRING) {
+                code.addField(getVariableName(), "Ljava/lang/String;");
+                code.addFieldInstruction(Opcodes.PUTFIELD, getVariableName(), "Ljava/lang/String;", code.getProgramInternalName());
+            } else {
+                code.addField(getVariableName(), "L" + ByteCodeGenerator.internalNameFor(getType().getJavaType()) + ";");
+                code.addFieldInstruction(Opcodes.PUTFIELD, getVariableName(), "L" + ByteCodeGenerator.internalNameFor(getType().getJavaType()) + ";", code.getProgramInternalName());
+            }
+        } else {
+            expression.compile(code);
+            Integer slotforvar = code.createLocalStorageSlotFor(getVariableName());
+            if (getType() == CatscriptType.INT || getType() == CatscriptType.BOOLEAN) {
+                code.addVarInstruction(Opcodes.ISTORE, slotforvar);
+            } else {
+                code.addVarInstruction(Opcodes.ASTORE, slotforvar);
+            }
+        }
     }
 }

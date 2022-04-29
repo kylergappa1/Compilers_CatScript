@@ -5,7 +5,6 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
 
-// TODO - implement proper scoping
 public class CatscriptRuntime {
     LinkedList<Map<String, Object>> scopes = new LinkedList<>();
 

@@ -7,9 +7,14 @@ import edu.montana.csci.csci468.parser.ErrorType;
 import edu.montana.csci.csci468.parser.ParseError;
 import edu.montana.csci.csci468.parser.SymbolTable;
 import edu.montana.csci.csci468.parser.expressions.Expression;
+import org.objectweb.asm.Label;
+import org.objectweb.asm.Opcodes;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+
+import static edu.montana.csci.csci468.bytecode.ByteCodeGenerator.internalNameFor;
 
 public class ForStatement extends Statement {
     private Expression expression;
@@ -95,7 +100,40 @@ public class ForStatement extends Statement {
 
     @Override
     public void compile(ByteCodeGenerator code) {
-        super.compile(code);
+        Integer iterslot = code.nextLocalStorageSlot();
+
+        Label iterationStart = new Label();
+        Label end = new Label();
+
+        expression.compile(code);
+
+        code.addMethodInstruction(Opcodes.INVOKEINTERFACE, internalNameFor(List.class), "iterator", "()Ljava/util/Iterator;");
+        code.addVarInstruction(Opcodes.ASTORE, iterslot);
+        code.addLabel(iterationStart);
+
+        code.addVarInstruction(Opcodes.ALOAD, iterslot);
+        code.addMethodInstruction(Opcodes.INVOKEINTERFACE, internalNameFor(Iterator.class), "hasNext", "()Z");
+        code.addJumpInstruction(Opcodes.IFEQ, end);
+
+        CatscriptType componentType = getComponentType();
+        code.addVarInstruction(Opcodes.ALOAD, iterslot);
+        code.addMethodInstruction(Opcodes.INVOKEINTERFACE, internalNameFor(Iterator.class), "next", "()Ljava/lang/Object;");
+        code.addTypeInstruction(Opcodes.CHECKCAST, internalNameFor(componentType.getJavaType()));
+        unbox(code, componentType);
+
+        Integer iteratorvariableslot = code.createLocalStorageSlotFor(variableName);
+        if (componentType.equals(CatscriptType.INT) || componentType.equals(CatscriptType.BOOLEAN)) {
+            code.addVarInstruction(Opcodes.ISTORE, iteratorvariableslot);
+        } else {
+            code.addVarInstruction(Opcodes.ASTORE, iteratorvariableslot);
+        }
+
+        for (Statement statement : body) {
+            statement.compile(code);
+        }
+
+        code.addJumpInstruction(Opcodes.GOTO, iterationStart);
+        code.addLabel(end);
     }
 
 }

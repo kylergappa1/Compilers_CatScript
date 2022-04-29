@@ -4,12 +4,12 @@ import edu.montana.csci.csci468.bytecode.ByteCodeGenerator;
 import edu.montana.csci.csci468.eval.CatscriptRuntime;
 import edu.montana.csci.csci468.parser.CatscriptType;
 import edu.montana.csci.csci468.parser.ErrorType;
-import edu.montana.csci.csci468.parser.ParseError;
 import edu.montana.csci.csci468.parser.SymbolTable;
 import edu.montana.csci.csci468.tokenizer.Token;
 import edu.montana.csci.csci468.tokenizer.TokenType;
 import org.objectweb.asm.Opcodes;
 
+import static edu.montana.csci.csci468.bytecode.ByteCodeGenerator.internalNameFor;
 import static edu.montana.csci.csci468.util.Util.verifyOneOfTypes;
 
 public class AdditiveExpression extends Expression {
@@ -27,9 +27,11 @@ public class AdditiveExpression extends Expression {
     public Expression getLeftHandSide() {
         return leftHandSide;
     }
+
     public Expression getRightHandSide() {
         return rightHandSide;
     }
+
     public boolean isAdd() {
         return operator.getType() == TokenType.PLUS;
     }
@@ -95,13 +97,28 @@ public class AdditiveExpression extends Expression {
 
     @Override
     public void compile(ByteCodeGenerator code) {
-        getLeftHandSide().compile(code);
-        getRightHandSide().compile(code);
-        if (isAdd()) {
-            code.addInstruction(Opcodes.IADD);
+        if (getType() == CatscriptType.INT) {
+            getLeftHandSide().compile(code);
+            getRightHandSide().compile(code);
+            if (isAdd()) {
+                code.addInstruction(Opcodes.IADD);
+            } else {
+                code.addInstruction(Opcodes.ISUB);
+            }
         } else {
-            code.addInstruction(Opcodes.ISUB);
+            getLeftHandSide().compile(code);
+            if (getLeftHandSide().getType() == CatscriptType.INT) {
+                code.addMethodInstruction(Opcodes.INVOKESTATIC, internalNameFor(String.class), "valueOf", "(I)Ljava/lang/String;");
+            } else {
+                code.addMethodInstruction(Opcodes.INVOKESTATIC, internalNameFor(String.class), "valueOf", "(Ljava/lang/Object;)Ljava/lang/String;");
+            }
+            getRightHandSide().compile(code);
+            if (getRightHandSide().getType() == CatscriptType.INT) {
+                code.addMethodInstruction(Opcodes.INVOKESTATIC, internalNameFor(String.class), "valueOf", "(I)Ljava/lang/String;");
+            } else {
+                code.addMethodInstruction(Opcodes.INVOKESTATIC, internalNameFor(String.class), "valueOf", "(Ljava/lang/Object;)Ljava/lang/String;");
+            }
+            code.addMethodInstruction(Opcodes.INVOKEVIRTUAL, internalNameFor(String.class), "concat", "(Ljava/lang/String;)Ljava/lang/String;");
         }
     }
-
 }

@@ -1,7 +1,9 @@
 package edu.montana.csci.csci468.parser;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class CatscriptType {
 
@@ -32,8 +34,16 @@ public class CatscriptType {
     }
 
     // TODO memoize this call
+    static ConcurrentHashMap<CatscriptType, ListType> cache = new ConcurrentHashMap<>();
+
     public static CatscriptType getListType(CatscriptType type) {
-        return new ListType(type);
+//        ListType listType = cache.get(type);
+        ListType returnType = cache.computeIfAbsent(type, catscriptType -> new ListType(type));
+//        if (listType == null) {
+//            listType = new ListType(type);
+//            cache.put(type, listType);
+//        }
+        return returnType;
     }
 
     @Override
@@ -60,6 +70,7 @@ public class CatscriptType {
 
     public static class ListType extends CatscriptType {
         private final CatscriptType componentType;
+
         public ListType(CatscriptType componentType) {
             super("list<" + componentType.toString() + ">", List.class);
             this.componentType = componentType;
