@@ -1,0 +1,4 @@
+Errors:
+
+- Missing source zip
+- Missing kyler_gappa_portfolio.pdf
