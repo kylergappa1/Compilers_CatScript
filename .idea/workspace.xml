@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2504c4eb-3cb2-428b-b5d9-5b3c29d0f637" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="24f6DN8q3OoDHW54WtHipYhTyeX" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/src/test/java/edu/montana/csci/csci468" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/capstone/portfolio" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Kyler\csci-468-spring2022-private\capstone\portfolio" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Kyler\csci-468-spring2022-private\capstone\portfolio" />
+      <recent name="C:\Users\Kyler\csci-468-spring2022-private\capstone\uml" />
+      <recent name="C:\Users\Kyler\csci-468-spring2022-private\capstone\test" />
+      <recent name="C:\Users\Kyler\csci-468-spring2022-private\capstone" />
+      <recent name="C:\Users\Kyler\csci-468-spring2022-private" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.CatScriptServer">
+    <configuration name="CatScriptServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="edu.montana.csci.csci468.CatScriptServer" />
+      <module name="csci-468-spring2022" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.montana.csci.csci468.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CatscriptBasicExpressionCompileTest.factorExpressionCompilesProperly" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="csci-468-spring2022" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.montana.csci.csci468.bytecode.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="edu.montana.csci.csci468.bytecode" />
+      <option name="MAIN_CLASS_NAME" value="edu.montana.csci.csci468.bytecode.CatscriptBasicExpressionCompileTest" />
+      <option name="METHOD_NAME" value="factorExpressionCompilesProperly" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CatscriptBasicExpressionTranspileTest.literalExpressionsEvaluatesProperly" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="csci-468-spring2022" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.montana.csci.csci468.js.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="edu.montana.csci.csci468.js" />
+      <option name="MAIN_CLASS_NAME" value="edu.montana.csci.csci468.js.CatscriptBasicExpressionTranspileTest" />
+      <option name="METHOD_NAME" value="literalExpressionsEvaluatesProperly" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="edu.montana.csci.csci468 in csci-468-spring2022" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="csci-468-spring2022" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.montana.csci.csci468.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="edu.montana.csci.csci468" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="edu.montana.csci.csci468.bytecode in csci-468-spring2022" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="csci-468-spring2022" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.montana.csci.csci468.bytecode.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="edu.montana.csci.csci468.bytecode" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.CatScriptServer" />
+        <item itemvalue="JUnit.edu.montana.csci.csci468.bytecode in csci-468-spring2022" />
+        <item itemvalue="JUnit.edu.montana.csci.csci468 in csci-468-spring2022" />
+        <item itemvalue="JUnit.CatscriptBasicExpressionCompileTest.factorExpressionCompilesProperly" />
+        <item itemvalue="JUnit.CatscriptBasicExpressionTranspileTest.literalExpressionsEvaluatesProperly" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2504c4eb-3cb2-428b-b5d9-5b3c29d0f637" name="Changes" comment="" />
+      <created>1644009173925</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1644009173925</updated>
+      <workItem from="1644009175860" duration="13000" />
+      <workItem from="1644009202349" duration="690000" />
+      <workItem from="1644618694159" duration="1006000" />
+      <workItem from="1644858673066" duration="4156000" />
+      <workItem from="1644988697542" duration="594000" />
+      <workItem from="1644990086151" duration="88000" />
+      <workItem from="1645045159757" duration="3354000" />
+      <workItem from="1645127279628" duration="1762000" />
+      <workItem from="1646603855687" duration="4256000" />
+      <workItem from="1646673500826" duration="2374000" />
+      <workItem from="1646678805980" duration="2359000" />
+      <workItem from="1646687644651" duration="1217000" />
+      <workItem from="1648489086400" duration="4965000" />
+      <workItem from="1648522178379" duration="619000" />
+      <workItem from="1648773545266" duration="4108000" />
+      <workItem from="1649206268162" duration="56000" />
+      <workItem from="1650905235469" duration="2754000" />
+      <workItem from="1651176385166" duration="2036000" />
+      <workItem from="1651258204496" duration="12856000" />
+      <workItem from="1651597430937" duration="1702000" />
+      <workItem from="1651788681151" duration="2225000" />
+      <workItem from="1651861593703" duration="1832000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/edu/montana/csci/csci468/CatscriptTestBase.java</url>
+          <line>95</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/csci_468_spring2022_private$CatscriptBasicExpressionEvalTest_additiveStringExpressionEvaluatesProperly.ic" NAME="CatscriptBasicExpressionEvalTest.additiveStringExpressionEvaluatesProperly Coverage Results" MODIFIED="1648778380787" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>edu.montana.csci.csci468.eval.*</FILTER>
+    </SUITE>
+  </component>
+</project>
