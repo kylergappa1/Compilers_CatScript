@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2504c4eb-3cb2-428b-b5d9-5b3c29d0f637" name="Changes" comment="" />
+    <list default="true" id="2504c4eb-3cb2-428b-b5d9-5b3c29d0f637" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/capstone/portfolio/src.zip" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -160,7 +163,8 @@
       <workItem from="1651258204496" duration="12856000" />
       <workItem from="1651597430937" duration="1702000" />
       <workItem from="1651788681151" duration="2225000" />
-      <workItem from="1651861593703" duration="1832000" />
+      <workItem from="1651861593703" duration="2423000" />
+      <workItem from="1651880361833" duration="80000" />
     </task>
     <servers />
   </component>
