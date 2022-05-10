@@ -8,7 +8,7 @@ Here are some features of the Catscript language.
 
 ### Comments
 
----
+--- 
 
 Commnets are used to better help document your code. To write a command in Catscript, the use of two forward slash charaters (`//`) is used.
 
